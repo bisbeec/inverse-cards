@@ -1,0 +1,127 @@
+@import 'variables';
+@import 'reset';
+@import 'mixins';
+@import 'utilities';
+
+
+
+body {
+  	font-family: "Roboto", serif;
+  	font-weight: 400;
+  	font-style: normal;
+  	color: #111;
+  	font-size: 14px;
+  	a {
+  		text-decoration: none;
+  		color: inherit;
+  	}
+}
+
+.sr-only:not(:focus):not(:active) {
+	clip: rect(0 0 0 0); 
+  	clip-path: inset(50%);
+  	height: 1px;
+  	overflow: hidden;
+  	position: absolute;
+  	white-space: nowrap; 
+  	width: 1px;
+}
+
+.page-title {
+	margin-block: 2em;
+}
+
+.cards-wrap {
+	display: flex;
+	gap: 2em;
+	.card {
+		width: 33.33333%;
+		.img-wrap {
+			position: relative;
+			height: 250px;
+			overflow: hidden;
+			img {
+				position: absolute;
+				height: 100%;
+				width: 100%;
+				object-fit: cover;
+				border-radius: 20px;
+			}
+			.arrow-link {
+				position: absolute;
+				right: 0; bottom: 0;
+				width: 70px; height: 70px;
+				font-size: 35px;
+				display: flex;
+				align-items: flex-end;
+				justify-content: flex-end;
+				background-color: #fff;
+				border-radius: 50% 0 0 0;
+				.arrow {
+					height: calc(100% - 10px); aspect-ratio: 1/1;
+					border-radius: 50%;
+					color: #fff;
+					@include flexCenter(column);
+				}
+				&::before, &::after {
+					content: "";
+					position: absolute;
+					bottom: 0;
+					left: -20px;
+					background: transparent;
+					width: 20px; height: 20px;
+					border-bottom-right-radius: 20px;
+					box-shadow: 0.313rem 0.313rem 0 0.313rem #fff;
+				}
+				&::after {
+					bottom: 70px;
+					left: auto;
+					right: 0;
+				}
+			}
+		}
+		.card-content {
+			padding: 10px;
+			.categories {
+				display: flex;
+				gap: .5em;
+				margin-top: 15px;
+				.category {
+					background-color: $gold;
+					text-transform: uppercase;
+					font-weight: 700;
+					font-size: .65rem;
+					padding: 3px 5px;
+					border-radius: 3px;
+					content: "";
+					&--branding {
+						&::after {
+							content: "Branding";
+						}
+					}
+					&--packaging {
+						background-color: $green;
+						&::after {
+							content: "Packaging";
+						}
+					}
+					&--marketing {
+						background-color: $purple;
+						&::after {
+							content: "Marketing";
+						}
+					}
+				}
+			}
+		}
+	}
+	@media screen and (max-width: $break) {
+		flex-direction: column;
+		.card {
+			width: 100%;
+			.img-wrap {
+				height: 300px;
+			}
+		}
+	}
+}
